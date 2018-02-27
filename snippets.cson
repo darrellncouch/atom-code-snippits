@@ -1,0 +1,268 @@
+# Your snippets
+#
+# Atom snippets allow you to enter a simple prefix in the editor and hit tab to
+# expand the prefix into a larger code block with templated values.
+#
+# You can create a new snippet in this file by typing "snip" and then hitting
+# tab.
+#
+# An example CoffeeScript snippet to expand log to console.log:
+#
+# '.source.coffee':
+#   'Console log':
+#     'prefix': 'log'
+#     'body': 'console.log $1'
+#
+# Each scope (e.g. '.source.coffee' above) can only be declared once.
+#
+# This file uses CoffeeScript Object Notation (CSON).
+# If you are unfamiliar with CSON, you can read more about it in the
+# Atom Flight Manual:
+# http://flight-manual.atom.io/using-atom/sections/basic-customization/#_cson
+# Your snippets
+#
+# Atom snippets allow you to enter a simple prefix in the editor and hit tab to
+# expand the prefix into a larger code block with templated values.
+#
+# You can create a new snippet in this file by typing "snip" and then hitting
+# tab.
+#
+# An example CoffeeScript snippet to expand log to console.log:
+#
+# '.source.coffee':
+#   'Console log':
+#     'prefix': 'log'
+#     'body': 'console.log $1'
+#
+# Each scope (e.g. '.source.coffee' above) can only be declared once.
+#
+# This file uses CoffeeScript Object Notation (CSON).
+# If you are unfamiliar with CSON, you can read more about it in the
+# Atom Flight Manual:
+# http://flight-manual.atom.io/using-atom/sections/basic-customization/#_cson
+
+'.source.js':
+
+# ExpressJS snippets
+ 'express router get':
+   'prefix': 'rtget'
+   'body': '''router.get('/$1', function(req, res) {
+      $2
+    });
+    '''
+  'express router post':
+    'prefix': 'rtpost'
+    'body': '''router.post('/$1', function(req, res) {
+       $2
+    });
+    '''
+  'express router patch':
+    'prefix': 'rtpatch'
+    'body': '''router.patch('/$1', function(req, res) {
+       $2
+    });
+    '''
+  'express router delete':
+    'prefix': 'rtdelete'
+    'body': '''router.delete('/$1', function(req, res) {
+       $2
+    });
+    '''
+  'express router delete':
+    'prefix': 'rtdelete'
+    'body': '''router.delete('/$1', function(req, res) {
+      $2
+    });
+    '''
+  'express router template':
+    'prefix': 'rtrpage'
+    'body': '''var express = require('express');
+    var router = express.Router();
+    var knex = require('../db/knex');
+    /* GET home page. */
+    router.get('/', function(req, res, next) {
+      res.render('index', { title: 'Express' });
+    });
+    module.exports = router;'''
+  'express server template':
+    'prefix': 'expserv'
+    'body': '''var path = require('path');
+      var express = require('express');
+      var bodyParser = require('body-parser');
+      var cookieParser = require('cookie-parser');
+      var port = process.env.PORT || 8000;
+      var cors = require('cors');
+      var logger = require('morgan');
+      var knex = require('./db/knex');
+      var index = require('./routes/indexRoutes');
+      var todos = require('./routes/todosRoutes');
+      var app = express();
+      app.set('views', path.join(__dirname, 'views'));
+      app.set('view engine', 'ejs');
+      app.use(logger('dev'));
+      app.use(cors());
+      app.use(bodyParser.json());
+      app.use(bodyParser.urlencoded({ extended: false }));
+      app.use('/', index);
+      app.use('/todos', todos);
+      app.listen(port, function() {
+        console.log("listening on port: ", port);
+      });
+      '''
+# KnexJS Snippets
+  'knex raw query':
+    'prefix': 'knexraw'
+    'body': '''knex.raw(`$1`).then(function($2) {
+      $2
+    });
+    '''
+  'knex select all query':
+    'prefix': 'knexgetall'
+    'body': '''knex('$1').select().then(function($2) {
+      $3
+    });
+    '''
+  'knex select one query':
+    'prefix': 'knexgetone'
+    'body': '''knex('$1').select().where('$2', $3).then(function($4) {
+      $5
+    })
+    '''
+  'knex add query':
+    'prefix': 'knexadd'
+    'body': '''knex('$1').insert({$2}).then(function($3) {
+      $4
+    });
+    '''
+  'knex update query':
+    'prefix': 'knexupdate'
+    'body': '''knex('$1').update({$2}).where('$3', $4).then(function($5) {
+      $6
+    });
+    '''
+  'knex delete query':
+    'prefix': 'knexdelete'
+    'body': '''knex('$1').del().where('$2', $3).then(function($4) {
+      $5
+    });
+    '''
+  'knex create table':
+    'prefix': 'knexmigr'
+    'body': '''exports.up = function(knex, Promise) {
+      return knex.schema.createTable('$1', function(table) {
+        table.increments();
+        $2
+      });
+    };
+    exports.down = function(knex, Promise) {
+      return knex.schema.dropTable('$1');
+    };
+    '''
+  'react component':
+    'prefix': 'reactcomp'
+    'body': '''import React, { Component } from 'react'
+    class $1 extends Component {
+      render () {
+        return (
+          <div>$2</div>
+        )
+      }
+    }
+    export default $1
+    '''
+  'react stateless component':
+    'prefix': 'reactfunc'
+    'body': '''import React from 'react'
+    const $1 = (props) => {
+      return (
+        <div>$2</div>
+      )
+    }
+    export default $1
+    '''
+  'vue import':
+    'prefix': 'vueimport',
+    'body': 'import $1 from \'@/components/$1\''
+# HTML Snippets
+'.text.html.basic':
+  'viewport':
+    'prefix': 'viewport',
+    'body': '<meta name="viewport" content="width=device-width, initial-scale=1.0">'
+  'materialize':
+    'prefix': 'materializecss',
+    'body': '''
+      <!-- Compiled and minified CSS -->
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+
+      <!-- Compiled and minified JavaScript -->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
+    '''
+  'materialize nav-bar':
+    'prefix': 'navmaterial',
+    'body': '''
+
+        <!-- nav-bar -->
+        <nav>
+          <div class="nav-wrapper">
+            <a href="#" class="brand-logo">Logo</a>
+            <ul id="nav-mobile" class="right hide-on-med-and-down">
+              <li><a href="sass.html">Sass</a></li>
+              <li><a href="badges.html">Components</a></li>
+              <li><a href="collapsible.html">JavaScript</a></li>
+            </ul>
+          </div>
+        </nav>
+
+
+    '''
+  'material icons':
+    'prefix': 'iconsMaterial',
+    'body': '''
+      <!-- material icons -->
+      <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    '''
+  'icon Link':
+    'prefix': 'iconLink',
+    'body': '<i class="material-icons">PLACEHOLDER</i>'
+  'ejs js tag':
+    'prefix': 'ejsjs'
+    'body': '<% $1 %>'
+  'ejs eval tag':
+    'prefix': 'ejseval'
+    'body': '<%= $1 %>'
+  'ejs for loop':
+    'prefix': 'ejsfor'
+    'body': '''<% for(var $1 of $2) { %>
+    <% } %>
+    '''
+  'ejs if statement':
+    'prefix': 'ejsif'
+    'body': '''<% if($1) { %>
+    <% } %>
+    '''
+'.text.html.vue':
+  'vue component':
+    'prefix': 'vuecomp'
+    'body': '''
+    <template>
+      <div class="$1">
+        <h1>{{ something }}</h1>
+      </div>
+    </template>
+    <script>
+    export default {
+      name: '$1',
+      data () {
+        return {
+          something: ''
+        }
+      }
+    }
+    </script>
+    <!-- Add "scoped" attribute to limit CSS to this component only -->
+    <style scoped>
+    </style>
+    '''
+  'vue import':
+    'prefix': 'vueimport',
+    'body': 'import $1 from \'@/components/$1\''
